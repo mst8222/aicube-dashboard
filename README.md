@@ -1,16 +1,41 @@
 # AICube Dashboard
 
-基于 OpenClaw 的可视化控制台，用于管理 Agent、渠道、插件和技能。
+基于 OpenClaw 的可视化控制台，用于管理 Agent、渠道、插件和技能。内置**智能体办公室**——一个用 Godot 4 构建的 2D 像素风办公室模拟，让 Agent 以角色形象实时呈现在界面上。
+
+![Office Preview](public/office/index.png)
 
 ## 功能特点
 
+- 🏢 **智能体办公室**：在 Godot 像素风办公室里实时看到每个 Agent 的工作状态（工作中/休息中/移动中），点击角色查看详情
 - 🤖 **Agent 管理**：查看、创建、删除 Agent，设置身份标识
-- 📊 **实时状态**：监控 Agent 运行状态和最后活动时间
+- 📊 **机器看板**：实时监控 CPU、内存、磁盘、网络、温度
 - 🔌 **插件管理**：查看所有 OpenClaw 插件状态
 - 🛠️ **技能管理**：查看可用的 Skills
 - 💬 **渠道管理**：管理消息渠道（飞书、Telegram 等）
 - 💬 **会话管理**：查看和管理 Agent 对话会话
 - 📈 **模型管理**：查看配置的语言模型
+
+## 智能体办公室
+
+内置 2D 像素风办公室模拟，Agent 以角色形象实时呈现：
+
+| 角色 | 职位 | 颜色 |
+|------|------|------|
+| Alice | 前端工程师 | 🔵 蓝 |
+| Bob | 后端工程师 | 🩷 粉 |
+| Charlie | 设计师 | 🟢 绿 |
+| Diana | 测试工程师 | 🟠 橙 |
+| Eve | 运维工程师 | 🟣 紫 |
+
+**状态指示：**
+- 🟢 **工作中**：在工位上
+- 🟠 **休息中**：在休息区
+- 🔵 **移动中**：在走廊
+- ⚪ **空闲**：等待中
+
+点击任意角色可查看详细信息。办公室场景包含：**老板间**、**员工工位区**、**休息区**。
+
+> 💡 智能体办公室使用 Godot 4 引擎构建，集成在仪表盘内，通过 iframe 加载 HTML5 导出包，无需额外安装。
 
 ## 系统要求
 
@@ -70,9 +95,10 @@ export OPENCLAW_CLI=node
 export OPENCLAW_PATH=/opt/openclaw/openclaw.mjs
 export API_PORT=3000
 export CORS_ORIGINS=localhost,127.0.0.1,your-domain.com
+export VITE_ALLOWED_HOSTS=your-domain.com
 ```
 
-### 3. 启动服务
+### 4. 启动服务
 
 ```bash
 # 一键启动（API + 前端）
@@ -83,7 +109,7 @@ node server/index.cjs &    # API 服务 (3000)
 npm run dev:vite           # 前端开发服务器 (5173)
 ```
 
-### 4. 访问
+### 5. 访问
 
 - 前端：http://localhost:5173（或你的域名）
 - API：http://localhost:3000/api
@@ -98,7 +124,9 @@ aicube-dashboard/
 │   ├── db/             # SQLite 数据库
 │   └── data/           # 用户数据（API Key、用户配置）
 ├── src/                # Vue 3 前端源码
+│   └── views/          # 页面组件
 ├── public/             # 静态资源
+│   └── office/         # Godot 智能体办公室（HTML5 导出）
 ├── dist/               # 构建产物
 ├── start.sh            # 自动重启脚本
 ├── vite.config.js      # Vite 配置

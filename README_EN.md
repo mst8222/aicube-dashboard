@@ -1,16 +1,41 @@
 # AICube Dashboard
 
-A web-based control panel for OpenClaw, providing visual management of Agents, Channels, Plugins, and Skills.
+A web-based control panel for OpenClaw — manage Agents, Channels, Plugins, Skills and more. Features a built-in **Agent Office**: a 2D pixel-art office simulation powered by Godot 4 where agents appear as characters you can see working in real time.
+
+![Office Preview](public/office/index.png)
 
 ## Features
 
+- 🏢 **Agent Office**: See all your agents as pixel characters in a real-time office simulation (Working/Resting/Walking/Idle states), click any character for details
 - 🤖 **Agent Management**: View, create, delete Agents, set identity
-- 📊 **Real-time Status**: Monitor Agent runtime status and last activity
+- 📊 **Machine Dashboard**: Real-time CPU, Memory, Disk, Network, Temperature monitoring
 - 🔌 **Plugin Management**: View all OpenClaw plugin statuses
 - 🛠️ **Skill Management**: View available Skills
 - 💬 **Channel Management**: Manage messaging channels (Feishu, Telegram, etc.)
 - 💬 **Session Management**: View and manage Agent conversation sessions
 - 📈 **Model Management**: View configured language models
+
+## Agent Office
+
+Built-in 2D pixel-art office simulation with real-time agent avatars:
+
+| Name | Job Title | Color |
+|------|-----------|-------|
+| Alice | Frontend Engineer | 🔵 Blue |
+| Bob | Backend Engineer | 🩷 Pink |
+| Charlie | Designer | 🟢 Green |
+| Diana | QA Engineer | 🟠 Orange |
+| Eve | DevOps Engineer | 🟣 Purple |
+
+**Status Indicators:**
+- 🟢 **Working**: At workstation
+- 🟠 **Resting**: In rest area
+- 🔵 **Walking**: Moving in corridor
+- ⚪ **Idle**: Standing by
+
+Click any character to view details. Office scenes include: **Manager Room**, **Employee Workstations**, **Rest Area**.
+
+> 💡 The Agent Office is built with Godot 4, embedded in the dashboard via iframe loading an HTML5 export — no additional installation required.
 
 ## Requirements
 
@@ -70,7 +95,7 @@ export OPENCLAW_CLI=node
 export OPENCLAW_PATH=/opt/openclaw/openclaw.mjs
 export API_PORT=3000
 export CORS_ORIGINS=localhost,127.0.0.1,your-domain.com
-export VITE_ALLOWED_HOSTS=your-domain.com   # for Vite HTTPS dev server
+export VITE_ALLOWED_HOSTS=your-domain.com
 ```
 
 ### 4. Start Services
@@ -84,7 +109,7 @@ node server/index.cjs &    # API server (3000)
 npm run dev:vite           # Frontend dev server (5173)
 ```
 
-### 4. Access
+### 5. Access
 
 - Frontend: http://localhost:5173 (or your domain)
 - API: http://localhost:3000/api
@@ -99,7 +124,9 @@ aicube-dashboard/
 │   ├── db/             # SQLite database
 │   └── data/           # User data (API Key, user config)
 ├── src/                # Vue 3 frontend source
+│   └── views/          # Page components
 ├── public/             # Static assets
+│   └── office/         # Godot Agent Office (HTML5 export)
 ├── dist/               # Build output
 ├── start.sh            # Auto-restart script
 ├── vite.config.js      # Vite configuration
@@ -109,7 +136,7 @@ aicube-dashboard/
 ## Default Account
 
 **No built-in default.** On first startup:
-- If `config.json` exists with an `auth.users` entry → use that password
+- If `config.json` has an `auth.users` entry → use that password
 - If no user is configured → a random password is auto-generated and printed to console
 
 ⚠️ **Set up your `auth.users` in `config.json` before first use.**
