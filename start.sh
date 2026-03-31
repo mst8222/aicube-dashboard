@@ -2,7 +2,7 @@
 # AICube Dashboard 自动重启脚本
 # 崩溃后自动重启，保持服务持续运行
 
-APP_DIR="/home/moston/.openclaw/workspace/aicube-dashboard"
+APP_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="/tmp/aicube-dashboard.log"
 
 echo "[$(date)] AICube Dashboard 启动器初始化..." >> "$LOG_FILE"
