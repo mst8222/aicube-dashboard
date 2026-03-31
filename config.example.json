@@ -1,0 +1,33 @@
+{
+  "name": "clawcube-dashboard",
+  "version": "2.0.0",
+
+  "server": {
+    "port": 3000,
+    "frontendPort": 5173,
+    "host": "0.0.0.0"
+  },
+
+  "openclaw": {
+    "home": "~/.openclaw",
+    "cli": "node",
+    "path": ""
+  },
+
+  "cors": {
+    "origins": ["localhost", "127.0.0.1"]
+  },
+
+  "data": {
+    "dir": "./server/data"
+  },
+
+  "auth": {
+    "users": {
+      "admin": {
+        "password": "admin123",
+        "name": "管理员"
+      }
+    }
+  }
+}
