@@ -35,7 +35,7 @@ Built-in 2D pixel-art office simulation with real-time agent avatars:
 
 Click any character to view details. Office scenes include: **Manager Room**, **Employee Workstations**, **Rest Area**.
 
-> 💡 The Agent Office is built with Godot 4, embedded in the dashboard via iframe loading an HTML5 export — no additional installation required.
+> ⚠️ **The Agent Office requires HTTPS** (Godot HTML5 export relies on SharedArrayBuffer, which needs COOP/COEP response headers — browsers only enable this in secure contexts).
 
 ## Requirements
 
