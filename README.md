@@ -133,13 +133,63 @@ aicube-dashboard/
 └── package.json
 ```
 
-## 默认账号
+## 登录账号配置
 
-**无内置默认账号。** 首次启动时：
-- 如 `config.json` 中配置了 `auth.users` → 使用该密码登录
-- 如未配置任何用户 → 自动生成随机密码并打印到控制台
+### 首次设置
 
-⚠️ **请在部署前于 `config.json` 中配置你的用户！**
+本系统**不包含任何内置默认账号**，以确保安全。
+
+**方式一（推荐）：部署前配置**
+
+在 `config.json` 中配置用户：
+
+```json
+{
+  "auth": {
+    "users": {
+      "admin": {
+        "password": "your-secure-password",
+        "name": "管理员"
+      }
+    }
+  }
+}
+```
+
+**方式二：首次启动后查看自动生成的随机密码**
+
+如果部署时未在 `config.json` 中配置任何用户，系统会在首次启动时：
+1. 自动生成一个随机密码
+2. 将其写入 `server/data/users.json`
+3. 在控制台打印出来（请及时记录）
+
+```
+⚠️ 未检测到用户配置，已自动生成随机密码（请尽快修改 config.json）：
+   用户名: admin  密码: xk92m3qp
+```
+
+### 添加/修改/删除用户
+
+直接编辑 `config.json` 中的 `auth.users` 字段即可，保存后重启服务生效：
+
+```json
+{
+  "auth": {
+    "users": {
+      "admin": {
+        "password": "new-secure-password",
+        "name": "管理员"
+      },
+      "operator": {
+        "password": "another-password",
+        "name": "运维人员"
+      }
+    }
+  }
+}
+```
+
+> ⚠️ **生产环境请务必设置强密码**，不要使用简单组合。
 
 ## 端口说明
 

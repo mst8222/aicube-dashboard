@@ -133,13 +133,63 @@ aicube-dashboard/
 └── package.json
 ```
 
-## Default Account
+## Login Account Configuration
 
-**No built-in default.** On first startup:
-- If `config.json` has an `auth.users` entry → use that password
-- If no user is configured → a random password is auto-generated and printed to console
+### First-Time Setup
 
-⚠️ **Set up your `auth.users` in `config.json` before first use.**
+**There is no built-in default account** — this is intentional for security.
+
+**Option 1 (Recommended): Configure before deployment**
+
+Add users in `config.json`:
+
+```json
+{
+  "auth": {
+    "users": {
+      "admin": {
+        "password": "your-secure-password",
+        "name": "Admin"
+      }
+    }
+  }
+}
+```
+
+**Option 2: Auto-generated password on first start**
+
+If no users are configured in `config.json`, the system will:
+1. Generate a random password automatically
+2. Write it to `server/data/users.json`
+3. Print it to the console (save it immediately)
+
+```
+⚠️ No user configuration detected. Random password generated:
+   Username: admin  Password: xk92m3qp
+```
+
+### Add / Modify / Delete Users
+
+Just edit the `auth.users` field in `config.json` and restart the service:
+
+```json
+{
+  "auth": {
+    "users": {
+      "admin": {
+        "password": "new-secure-password",
+        "name": "Admin"
+      },
+      "operator": {
+        "password": "another-password",
+        "name": "Operator"
+      }
+    }
+  }
+}
+```
+
+> ⚠️ **Use strong passwords in production.** Do not use simple combinations.
 
 ## Port Reference
 
