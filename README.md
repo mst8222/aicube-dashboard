@@ -2,9 +2,9 @@
 
 基于 OpenClaw 的可视化控制台，用于管理 Agent、渠道、插件和技能。内置**智能体办公室**——一个用 Godot 4 构建的 2D 像素风办公室模拟，让 Agent 以角色形象实时呈现在界面上。
 
-![Office Preview](public/office/screenshot1.png)
+![AICube Dashboard Preview](public/images/readme-1.png)
 
-![Office Preview 2](public/office/screenshot2.png)
+![Dashboard Features](public/images/readme-2.png)
 
 ## 功能特点
 
